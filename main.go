@@ -1,7 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"larvis/internal/config"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	config.Hello()
 }
