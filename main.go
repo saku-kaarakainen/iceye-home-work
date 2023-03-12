@@ -5,5 +5,11 @@ import (
 )
 
 func main() {
-	config.Hello()
+	cfg, err := config.Load("./configs/config.json")
+
+	if err != nil {
+		panic(err)
+	}
+
+	println(cfg.Symbols[0].Name)
 }
