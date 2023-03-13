@@ -4,7 +4,7 @@ import (
 	"larvis/internal/card"
 )
 
-func AssembleDeck(cfg card.CardConfig) (Deck, error) {
+func AssembleDeck(cfg card.CardConfig) Deck {
 	deck := Deck{}
 
 	for _, color := range cfg.Colors {
@@ -13,5 +13,5 @@ func AssembleDeck(cfg card.CardConfig) (Deck, error) {
 		}
 	}
 
-	return deck, nil
+	return deck
 }

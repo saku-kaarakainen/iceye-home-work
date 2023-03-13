@@ -1,5 +1,7 @@
 package card
 
+import "fmt"
+
 type Color struct {
 	Name string `json:"name"`
 	Code string `json:"code"`
@@ -18,4 +20,8 @@ type CardConfig struct {
 type Card struct {
 	Color  Color
 	Symbol Symbol
+}
+
+func (c Card) String() string {
+	return fmt.Sprintf("%s%s", c.Color.Code, c.Symbol.Name)
 }

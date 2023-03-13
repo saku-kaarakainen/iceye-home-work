@@ -2,66 +2,45 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"larvis/internal/actor"
+	"larvis/internal/deck"
+	"larvis/internal/game"
 )
 
-type Event struct {
-	Type string
-	Data interface{}
-}
-
 func main() {
-	fmt.Println("Welcome to poker game!")
+	cfg, _ := LoadConfig("./configs/config.json")
 
-	cfg, err := LoadConfig("./configs/config.json")
-	if err != nil {
-		panic(err)
-	}
+	// initialize the game table
+	g := game.NewGame(cfg.Domains.Game)
+	g.Deck = deck.AssembleDeck(cfg.Domains.Card)
 
-	color := cfg.Domains.Card.Colors[0].Name
-	fmt.Println("Color:")
-	fmt.Println(color)
+	// invite actors, one dealer and two players
+	g.Dealer = actor.CreateDealer()
+	g.Player1 = actor.CretePlayer1()
+	g.Player2 = actor.CreateLarvis()
 
-	eventChan := make(chan Event)
-
-	// start game loop in a separate goroutine
-	go gameLoop(eventChan)
-
-	// wait for game loop to end
-	<-eventChan
-	fmt.Println("Thank you for playing with us!")
-}
-
-func gameLoop(eventChan chan Event) {
+	// the game loop
 	for {
-		// process events
-		select {
-		case event := <-eventChan:
-			handleEvent(event)
-		default:
-			// no events, do game update
-			update()
+		deck.ShuffleDeck(&g.Deck)
+		g.DealCards(
+			cfg.Domains.Game.CardsPerPlayer,
+			&g.Deck,
+			&g.Player1, &g.Player2)
+
+		actor.ShowCards(g.Player1)
+		actor.ShowCards(g.Player2)
+
+		g.DeclareWinner()
+
+		g.TakeCarsBackToDeck(
+			&g.Deck,
+			&g.Player1,
+			&g.Player2)
+
+		if !g.PlayAgain() {
+			break
 		}
-
-		// sleep for some time before next update
-		time.Sleep(100 * time.Millisecond)
 	}
-}
 
-func handleEvent(event Event) {
-	fmt.Println("Handling event:", event.Type)
-
-	switch event.Type {
-	case "player_joined":
-		fmt.Printf("Player %s joined the game\n", event.Data)
-	case "player_left":
-		fmt.Printf("Player %s left the game\n", event.Data)
-	case "bet_placed":
-		fmt.Printf("Player %s placed a bet of %d chips\n", event.Data.(string), 100)
-	}
-}
-
-func update() {
-	// do game update
-	fmt.Println("Updating game...")
+	fmt.Println("Thank you for playing poker with LARVIS")
 }
