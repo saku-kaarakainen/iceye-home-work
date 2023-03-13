@@ -13,7 +13,7 @@ if you have make tools installed, you can run with `make` - command. If not, try
 The app is trying to follow this code structure:
 https://github.com/golang-standards/project-layout
 
-The project is also trying to respect domain driven architecture.
+The project is also trying to respect domain driven design.
 
 #### Domains
 
@@ -23,7 +23,7 @@ The project is also trying to respect domain driven architecture.
 - deck
 - card
 
-Domain relationships
+Domain relationships:
 
 ```plantuml
 @startuml

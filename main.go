@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"larvis/internal/config"
 	"time"
 )
 
@@ -14,10 +13,14 @@ type Event struct {
 func main() {
 	fmt.Println("Welcome to poker game!")
 
-	_, err := config.Load("./configs/config.json")
+	cfg, err := LoadConfig("./configs/config.json")
 	if err != nil {
 		panic(err)
 	}
+
+	color := cfg.Domains.Card.Colors[0].Name
+	fmt.Println("Color:")
+	fmt.Println(color)
 
 	eventChan := make(chan Event)
 

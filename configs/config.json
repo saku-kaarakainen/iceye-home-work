@@ -1,37 +1,43 @@
 {
-    "deckConfigs": {
-        "colors": [
-            { "code": "H", "name": "heart" },
-            { "code": "D", "name": "diamond" },
-            { "code": "C", "name": "club" },
-            { "code": "S", "name": "spade" }
-        ],
+    "domains": {
+        "game": {
+            "combinations": [
+                { "name": "four of a kind",  "value": 5, "regex_format": "\\1{3}" },
+                { "name": "full house",      "value": 4, "regex_format": "(([23456789TJQKA])\\w{0,3}){3}((?!\\2)[23456789TJQKA])\\w{0,3}((?!\\2)[23456789TJQKA])\\w{0,3}" },
+                { "name": "triple",          "value": 3, "regex_format": "(.)\\1{2}" },
+                { "name": "two pairs",       "value": 2, "regex_format": "([2-9TJQKA])\\w*\\1\\w*([2-9TJQKA])\\w*\\2(?!\\w*\\1)\\w*([2-9TJQKA])\\w*\\3" },
+                { "name": "a pair",          "value": 1, "regex_format": "([23456789TJQKA]).*\\1" },
+                { "name": "high card",       "value": 0, "regex_format": "" }
+            ]
+        },
 
-        "symbols": [
-            { "name": "2", "value": 2 },
-            { "name": "3", "value": 3 },
-            { "name": "4", "value": 4 },
-            { "name": "5", "value": 5 },
-            { "name": "6", "value": 6 },
-            { "name": "7", "value": 7 },
-            { "name": "8", "value": 8 },
-            { "name": "9", "value": 9 },
-            { "name": "T", "value": 10 },
-            { "name": "J", "value": 11 },
-            { "name": "Q", "value": 12 },
-            { "name": "K", "value": 13 },
-            { "name": "A", "value": 14 }
-        ]
-    },
+        "player": {},
 
-    "gameConfigs": {
-        "combinations": [
-            { "name": "four of a kind",  "value": 5, "regex_format": "\\1{3}" },
-            { "name": "full house",      "value": 4, "regex_format": "(([23456789TJQKA])\\w{0,3}){3}((?!\\2)[23456789TJQKA])\\w{0,3}((?!\\2)[23456789TJQKA])\\w{0,3}" },
-            { "name": "triple",          "value": 3, "regex_format": "(.)\\1{2}" },
-            { "name": "two pairs",       "value": 2, "regex_format": "([2-9TJQKA])\\w*\\1\\w*([2-9TJQKA])\\w*\\2(?!\\w*\\1)\\w*([2-9TJQKA])\\w*\\3" },
-            { "name": "a pair",          "value": 1, "regex_format": "([23456789TJQKA]).*\\1" },
-            { "name": "high card",       "value": 0, "regex_format": "" }
-        ]
+        "deck": {},
+       
+        "card": {
+            "colors": [
+                { "code": "H", "name": "heart" },
+                { "code": "D", "name": "diamond" },
+                { "code": "C", "name": "club" },
+                { "code": "S", "name": "spade" }
+            ],
+
+            "symbols": [
+                { "name": "2", "value": 2 },
+                { "name": "3", "value": 3 },
+                { "name": "4", "value": 4 },
+                { "name": "5", "value": 5 },
+                { "name": "6", "value": 6 },
+                { "name": "7", "value": 7 },
+                { "name": "8", "value": 8 },
+                { "name": "9", "value": 9 },
+                { "name": "T", "value": 10 },
+                { "name": "J", "value": 11 },
+                { "name": "Q", "value": 12 },
+                { "name": "K", "value": 13 },
+                { "name": "A", "value": 14 }
+            ]
+        }
     }
 }

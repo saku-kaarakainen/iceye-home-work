@@ -2,7 +2,6 @@ package game
 
 import (
 	"fmt"
-	"larvis/internal/config"
 )
 
 type Card struct {
@@ -19,12 +18,12 @@ type game struct {
 	Deck []Card
 }
 
-func NewGame(cfg config.RootConfig) *game {
+func NewGame() *game {
 	return &game{}
 }
 
-func assembleDeck(cfg config.RootConfig) {
-	cfg.DeckConfigs.Colors
+func assembleDeck() {
+
 }
 
 func (g *game) ShuffleDeck() {
