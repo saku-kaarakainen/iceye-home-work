@@ -18,9 +18,9 @@
     "combinations": [
         { "name": "four of a kind",  "value": 5, "regex_format": "\\1{3}" },
         { "name": "full house",      "value": 4, "regex_format": "(([23456789TJQKA])\\w{0,3}){3}((?!\\2)[23456789TJQKA])\\w{0,3}((?!\\2)[23456789TJQKA])\\w{0,3}" },
-        { "name": "triple",          "value": 3, "regex_format": "" },
-        { "name": "two pairs",       "value": 2, "regex_format": "" },
-        { "name": "a pair",          "value": 1, "regex_format": "" },
+        { "name": "triple",          "value": 3, "regex_format": "(.)\\1{2}" },
+        { "name": "two pairs",       "value": 2, "regex_format": "([2-9TJQKA])\\w*\\1\\w*([2-9TJQKA])\\w*\\2(?!\\w*\\1)\\w*([2-9TJQKA])\\w*\\3" },
+        { "name": "a pair",          "value": 1, "regex_format": "([23456789TJQKA]).*\\1" },
         { "name": "high card",       "value": 0, "regex_format": "" }
     ]
 }
