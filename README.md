@@ -25,35 +25,8 @@ The project is also trying to respect domain driven architecture.
 
 Domain relationships
 
+```plantuml
 @startuml
-
-class Game {
-<<entity>>
-
-- id
-- name
-  }
-
-class Player {
-<<entity>>
-
-- id
-- name
-  }
-
-class Deck {
-<<entity>>
-
-- id
-- name
-  }
-
-class Card {
-<<entity>>
-
-- id
-- name
-  }
 
 Game "1" -- "m" Player
 Game "1" -- "1" Deck
@@ -61,3 +34,4 @@ Player "m" -- "m" Card
 Deck "1" -- "m" Card
 
 @enduml
+```
