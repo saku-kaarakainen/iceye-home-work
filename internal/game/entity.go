@@ -7,5 +7,6 @@ type Combination struct {
 }
 
 type GameConfig struct {
-	Combinations []Combination `json:"combinations"`
+	Combinations   []Combination `json:"combinations"`
+	CardsPerPlayer int           `json:"cardsPerPlayer"`
 }

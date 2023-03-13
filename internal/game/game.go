@@ -2,37 +2,21 @@ package game
 
 import (
 	"fmt"
+	"larvis/internal/actor"
+	"larvis/internal/card"
 )
 
-type Card struct {
-}
-
-type Player struct {
-	cards []Card
-}
-
 type game struct {
-	player1 Player
-	larvis  Player
+	player1 actor.Actor
+	larvis  actor.Actor
+	dealer  actor.Actor
 
-	Deck []Card
+	Deck []card.Card
 }
 
 func NewGame() *game {
+
 	return &game{}
-}
-
-func assembleDeck() {
-
-}
-
-func (g *game) ShuffleDeck() {
-	fmt.Println("shuffle deck")
-}
-
-func (g *game) DealCards() {
-	fmt.Println("dealing cards")
-	fmt.Println("You got: 2 of spades")
 }
 
 func (g *game) Play() bool {

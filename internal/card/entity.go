@@ -14,3 +14,8 @@ type CardConfig struct {
 	Colors  []Color  `json:"colors"`
 	Symbols []Symbol `json:"symbols"`
 }
+
+type Card struct {
+	Color  Color
+	Symbol Symbol
+}
