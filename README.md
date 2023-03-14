@@ -1,6 +1,6 @@
 # iceye-home-work
 
-Homework of ICYEYE for the job application process
+Homework of ICEYE for the job application process
 
 ## How to run the app
 
