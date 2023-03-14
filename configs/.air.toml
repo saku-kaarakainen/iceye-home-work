@@ -1,3 +1,6 @@
+# Configuration file for the "air" live reload tool
+# Put this file in the root of your project and run "air" from the same directory
+# You can get the alias from/using .zshrc
 root = "."
 testdata_dir = "testdata"
 tmp_dir = "tmp"
