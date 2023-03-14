@@ -1,9 +1,10 @@
 package actor
 
+// - Game can refer Actor (or Dealer)
+// - Actor, Non-Dealer can refer Hand 
+//     - Dealer can refer Deck
+// - Deck/Hand can refer Card
 import "larvis/internal/deck"
-
-type ActorConfig struct {
-}
 
 type Role string
 
@@ -15,7 +16,8 @@ const (
 
 // Actor in the game
 type Actor struct {
-	Name string
-	Role Role
-	Deck deck.Deck
+	Name   string
+	Role   Role
+	Deck   deck.Deck
+	Points int
 }

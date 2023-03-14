@@ -19,19 +19,29 @@ The project is also trying to respect domain driven design.
 
 - [root] (main)
 - game
-- player
-- deck
+- actor|dealer
+- deck|hand
 - card
+
+Notes:
+- Dealer is a special type of Actor
+- Hand is a special type of Deck
 
 Domain relationships:
 
 ```plantuml
 @startuml
 
-Game "1" -- "m" Player
-Game "1" -- "1" Deck
-Player "m" -- "m" Card
-Deck "1" -- "m" Card
+Game "1" -- "m" Actor
+Actor "1" -- "1" Deck
+Deck "m" -- "m" Card
 
 @enduml
 ```
+
+Having the relationships means, that only respective references are allowed done in the code:
+
+- Game can refer Actor (or Dealer)
+- Actor, Non-Dealer can refer Hand 
+    - Dealer can refer Deck
+- Deck/Hand can refer Card

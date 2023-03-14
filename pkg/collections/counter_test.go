@@ -1,4 +1,4 @@
-package str_analyzer
+package collections
 
 import "testing"
 

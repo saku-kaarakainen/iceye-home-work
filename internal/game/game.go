@@ -3,7 +3,7 @@ package game
 import (
 	"fmt"
 	"larvis/internal/actor"
-	"larvis/internal/deck"
+	"larvis/internal/card"
 )
 
 type game struct {
@@ -11,7 +11,7 @@ type game struct {
 	Player2 actor.Actor
 	Dealer  actor.Actor
 
-	Deck deck.Deck
+	AvailableCards []card.Card
 }
 
 // Initializes the game
@@ -26,13 +26,4 @@ func (g *game) DeclareWinner() {
 func (g *game) PlayAgain() bool {
 	fmt.Println("play again")
 	return false
-}
-
-func (g *game) TakeCarsBackToDeck(
-	deck *deck.Deck,
-	players ...*actor.Actor) {
-	for _, player := range players {
-		deck.Cards = append(deck.Cards, player.Deck.Cards...)
-		player.Deck.Cards = nil
-	}
 }

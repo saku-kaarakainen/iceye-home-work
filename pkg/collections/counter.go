@@ -1,4 +1,4 @@
-package str_analyzer
+package collections
 
 func CountSameLetters(value string) map[rune]int {
 	m := make(map[rune]int)

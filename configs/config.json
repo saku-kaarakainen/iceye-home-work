@@ -16,7 +16,7 @@
                 { "name": "high card",      "value": 0, "method": "HIGHCARD" }
             ]
         },
-       
+   
         "card": {
             "colors": [
                 { "code": "H", "name": "heart" },
