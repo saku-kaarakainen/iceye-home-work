@@ -10,10 +10,10 @@ import (
 
 type DomainConfig struct {
 	// game
-	Game game.GameConfig `json:"game"`
+	Game game.GameConfig `json:"hand"`
 
 	// deck
-	Deck deck.DeckConfig `json:"deck"`
+	Hand hand.HandConfig `json:"hand"`
 
 	// card
 	Card card.CardConfig `json:"card"`

@@ -43,27 +43,18 @@ The project is also trying to respect domain driven design. There are more about
 
 - [root] (main) - the required logic to set things up
 - game - logic related to the game itself
-- actor|dealer - the player, the one who has the cards, but also the dealer
-- deck|hand - holds the cards of an Actor.
-- card - A single component where the decks are composed
+- hand - holds the cards
+- card - A single component where the hands are composed
 
-### Notes:
 
-- Dealer is a special type of Actor
-- Hand is a special type of Deck
-
-### Visualization
-
-![visualization of domains](./assets/domains-visual.png)
 
 ### Domain relationships:
 
 ```plantuml
 @startuml
 
-Game "1" -- "m" Actor
-Actor "1" -- "1" Deck
-Deck "m" -- "m" Card
+Game "1" -- "m" Hand
+Hand "1" -- "1" Card
 
 @enduml
 ```

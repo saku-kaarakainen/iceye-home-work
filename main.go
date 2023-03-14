@@ -3,48 +3,31 @@ package main
 import (
 	"fmt"
 	"larvis/internal/card"
-	"larvis/internal/deck"
 	"larvis/internal/game"
+	"larvis/internal/hand"
 )
 
 func main() {
-
 	cfg, _ := LoadConfig("./configs/config.json")
+	symbolMap := card.MustCvrtSymbolsToMap(cfg.Domains.Card.Symbols)
 
-	// convert symbols into map, so they can be passed over different domains
-	// cards are allowed to pass deck domain,
-	// because they have m2m relationship with the deck
-	symbolsMap := card.MustCvrtSymbolsToMap(cfg.Domains.Card.Symbols)
+	handCount := 2
+	var hands [2]hand.Hand
 
-	// initialize the game table
-	g := game.NewGame(cfg.Domains.Game)
-
-	hand1 := g.GetHand(
-		cfg.Domains.Deck,
-		symbolsMap,
-	)
-
-	hand2 := g.GetHand(
-		cfg.Domains.Deck,
-		symbolsMap,
-	)
-
-	deck.CalculatePoints(
-		hand1,
-		symbolsMap,
-		&g.Player1)
-
-	deck.CalculatePoints(
-		hand2,
-		symbolsMap,
-		&g.Player2)
-
-	winner := g.GetWinner()
-	if winner == nil {
-		fmt.Println("TIE")
-	} else {
-		fmt.Printf("Winner: %s\n", winner.Name)
+	for i := 0; i < handCount; i++ {
+		hands[i] = hand.New(
+			cfg.Domains.Hand,
+			symbolMap,
+			fmt.Sprintf("Hand %d", i+1),
+		)
+		hands[i].ReadHand()
+		if hands[i].IsValidHand() {
+			hands[i].CalculatePoints()
+			break
+		}
 	}
 
-	fmt.Println("Thank you for playing poker with LARVIS")
+	winner := game.GetWinner()
+	fmt.Print("Winner: %s", winner.Name)
+	fmt.Println()
 }

@@ -1,4 +1,4 @@
-package deck
+package hand
 
 import (
 	col "larvis/pkg/collections"
@@ -6,20 +6,19 @@ import (
 	m "larvis/pkg/math"
 )
 
-// hand could be separate domain.
-type Hand string
+type HandType string
 
 const (
-	FourOfKind Hand = "FOUROFAKIND"
-	Triple     Hand = "TRIPLE"
-	FullHouse  Hand = "FULLHOUSE"
-	TwoPairs   Hand = "TWOPAIRS"
-	Pair       Hand = "APAIR"
-	HighCard   Hand = "HIGHCARD"
+	FourOfKind HandType = "FOUROFAKIND"
+	Triple     HandType = "TRIPLE"
+	FullHouse  HandType = "FULLHOUSE"
+	TwoPairs   HandType = "TWOPAIRS"
+	Pair       HandType = "APAIR"
+	HighCard   HandType = "HIGHCARD"
 )
 
-func GetMethod(hand Hand) func(map[rune]int, string) (bool, int) {
-	return map[Hand]func(map[rune]int, string) (bool, int){
+func GetMethod(hand HandType) func(map[rune]int, string) (bool, int) {
+	return map[HandType]func(map[rune]int, string) (bool, int){
 		FourOfKind: IsFourOfKind,
 		Triple:     IsTripple,
 		FullHouse:  IsFullHouse,

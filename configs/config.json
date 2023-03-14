@@ -2,9 +2,7 @@
     "domains": {
         "game": {},
 
-        "actor": {},
-
-        "deck": {
+        "hand": {
             "handSize": 5,
             "combinations": [
                 { "name": "four of a kind", "value": 5, "method": "FOUROFAKIND" },            
@@ -15,7 +13,7 @@
                 { "name": "high card",      "value": 0, "method": "HIGHCARD" }
             ]
         },
-   
+
         "card": {
             "symbols": [
                 { "code": "2", "value": 2 },

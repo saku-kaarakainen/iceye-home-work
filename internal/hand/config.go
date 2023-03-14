@@ -1,4 +1,4 @@
-package deck
+package hand
 
 type Combination struct {
 	Name   string `json:"name"`
@@ -6,7 +6,7 @@ type Combination struct {
 	Method string `json:"method"`
 }
 
-type DeckConfig struct {
+type HandConfig struct {
 	HandSize     int           `json:"handSize"`
 	Combinations []Combination `json:"combinations"`
 }
