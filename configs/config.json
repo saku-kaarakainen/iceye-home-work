@@ -1,20 +1,21 @@
 {
     "domains": {
         "game": {
-            "cardsPerPlayer": 5,
-            "combinations": [
-                { "name": "four of a kind",  "value": 5, "regex_format": "\\1{3}" },
-                { "name": "full house",      "value": 4, "regex_format": "(([23456789TJQKA])\\w{0,3}){3}((?!\\2)[23456789TJQKA])\\w{0,3}((?!\\2)[23456789TJQKA])\\w{0,3}" },
-                { "name": "triple",          "value": 3, "regex_format": "(.)\\1{2}" },
-                { "name": "two pairs",       "value": 2, "regex_format": "([2-9TJQKA])\\w*\\1\\w*([2-9TJQKA])\\w*\\2(?!\\w*\\1)\\w*([2-9TJQKA])\\w*\\3" },
-                { "name": "a pair",          "value": 1, "regex_format": "([23456789TJQKA]).*\\1" },
-                { "name": "high card",       "value": 0, "regex_format": "" }
-            ]
+            "cardsPerPlayer": 5
         },
 
         "actor": {},
 
-        "deck": {},
+        "deck": {
+            "combinations": [
+                { "name": "four of a kind", "value": 5, "method": "FOUROFAKIND" },            
+                { "name": "triple",         "value": 3, "method": "TRIPLE" },
+                { "name": "full house",     "value": 4, "method": "FULLHOUSE" },
+                { "name": "a pair",         "value": 1, "method": "APAIR" },
+                { "name": "two pairs",      "value": 2, "method": "TWOPAIRS" },
+                { "name": "high card",      "value": 0, "method": "HIGHCARD" }
+            ]
+        },
        
         "card": {
             "colors": [

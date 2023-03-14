@@ -19,7 +19,6 @@ func NewGame(cfg GameConfig) *game {
 	return &game{}
 }
 
-
 func (g *game) DeclareWinner() {
 	fmt.Println("declare winner")
 }
@@ -33,7 +32,7 @@ func (g *game) TakeCarsBackToDeck(
 	deck *deck.Deck,
 	players ...*actor.Actor) {
 	for _, player := range players {
-		deck.Cards = append(deck.Cards, player.Cards...)
-		player.Cards = nil
+		deck.Cards = append(deck.Cards, player.Deck.Cards...)
+		player.Deck.Cards = nil
 	}
 }

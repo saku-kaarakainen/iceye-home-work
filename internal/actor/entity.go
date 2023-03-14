@@ -1,6 +1,6 @@
 package actor
 
-import "larvis/internal/card"
+import "larvis/internal/deck"
 
 type ActorConfig struct {
 }
@@ -8,14 +8,14 @@ type ActorConfig struct {
 type Role string
 
 const (
-	PLAYER Role   = "player"
+	PLAYER   Role = "player"
 	COMPUTER Role = "computer"
-	DEALER Role   = "dealer"
+	DEALER   Role = "dealer"
 )
 
 // Actor in the game
 type Actor struct {
-	Name  string
+	Name string
 	Role Role
-	Cards []card.Card
+	Deck deck.Deck
 }

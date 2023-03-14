@@ -7,17 +7,17 @@ import (
 
 func (g *game) DealCards(
 	cardsPerPlayer int,
-	deck *deck.Deck,
+	tableDeck *deck.Deck,
 	players ...*actor.Actor) {
 
 	for i := 0; i < cardsPerPlayer; i++ {
 		for _, player := range players {
 
 			// Remove the last element from the slice
-			last := deck.Cards[len(deck.Cards)-1]       // save the last element
-			deck.Cards = deck.Cards[:len(deck.Cards)-1] // remove the last element
+			last := tableDeck.Cards[len(tableDeck.Cards)-1]       // save the last element
+			tableDeck.Cards = tableDeck.Cards[:len(tableDeck.Cards)-1] // remove the last element
 
-			player.Cards = append(player.Cards, last)
+			player.Deck.Cards = append(player.Deck.Cards, last)
 		}
 	}
 }

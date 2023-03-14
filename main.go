@@ -28,9 +28,11 @@ func main() {
 			&g.Player1, &g.Player2)
 
 		actor.ShowCards(g.Player1)
-		actor.ShowCards(g.Player2)
+		deck.CalculatePoints(cfg.Domains.Deck, g.Player1.Deck)
 
-		g.DeclareWinner()
+		actor.ShowCards(g.Player2)
+		deck.CalculatePoints(cfg.Domains.Deck, g.Player2.Deck)
+
 
 		g.TakeCarsBackToDeck(
 			&g.Deck,

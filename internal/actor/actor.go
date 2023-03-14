@@ -1,20 +1,20 @@
 package actor
 
-import "larvis/internal/card"
+import "larvis/internal/deck"
 
 func CretePlayer1() Actor {
 	return Actor{
 		Name:  "Player 1",
 		Role:  PLAYER,
-		Cards: []card.Card{},
-	}	
+		Deck: deck.Deck{},
+	}
 }
 
 func CreateLarvis() Actor {
 	return Actor{
 		Name:  "Mr. Larvis",
 		Role:  COMPUTER,
-		Cards: []card.Card{},
+		Deck: deck.Deck{},
 	}
 }
 
@@ -22,6 +22,6 @@ func CreateDealer() Actor {
 	return Actor{
 		Name:  "Dealer",
 		Role:  DEALER,
-		Cards: []card.Card{},
+		Deck: deck.Deck{},
 	}
 }
