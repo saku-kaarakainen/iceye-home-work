@@ -6,7 +6,6 @@ import (
 	"larvis/internal/card"
 	"larvis/internal/deck"
 	"larvis/internal/game"
-	"time"
 )
 
 func main() {
@@ -26,45 +25,37 @@ func main() {
 	g.Player2 = actor.CreateLarvis()
 
 	// the game loop
-	for {
-		deck.ShuffleDeck(&g.Dealer.Deck)
 
-		// Dealer is the Actor
-		// deals the card from himself (source) to players (dests)
-		actor.Deal(
-			cfg.Domains.Game.CardsPerPlayer,
-			&g.Dealer,
-			&g.Player1,
-			&g.Player2)
+	deck.ShuffleDeck(&g.Dealer.Deck)
 
-		deck.CalculatePoints(
-			cfg.Domains.Deck,
-			symbolsMap,
-			&g.Player1.Deck)
+	// Dealer is the Actor
+	// deals the card from himself (source) to players (dests)
+	actor.Deal(
+		cfg.Domains.Game.CardsPerPlayer,
+		&g.Dealer,
+		&g.Player1,
+		&g.Player2)
 
-		deck.CalculatePoints(
-			cfg.Domains.Deck,
-			symbolsMap,
-			&g.Player2.Deck)
+	deck.CalculatePoints(
+		cfg.Domains.Deck,
+		symbolsMap,
+		&g.Player1.Deck)
 
-		actor.ShowCards(g.Player1)
-		actor.ShowCards(g.Player2)
+	deck.CalculatePoints(
+		cfg.Domains.Deck,
+		symbolsMap,
+		&g.Player2.Deck)
 
-		winner := g.GetWinner()
-		fmt.Printf("Winner is %s\n", winner.Name)
+	actor.ShowCards(g.Player1)
+	actor.ShowCards(g.Player2)
 
-		actor.TakeCardsBack(
-			&g.Dealer,
-			&g.Player1,
-			&g.Player2)
+	winner := g.GetWinner()
+	fmt.Printf("Winner: %s\n", winner.Name)
 
-		fmt.Println("Sleeping for 3 seconds...")
-		time.Sleep(3 * time.Second)
-		fmt.Println("Waking up...")
-		// if !g.PlayAgain() {
-		// 	break
-		// }
-	}
+	actor.TakeCardsBack(
+		&g.Dealer,
+		&g.Player1,
+		&g.Player2)
 
 	fmt.Println("Thank you for playing poker with LARVIS")
 }

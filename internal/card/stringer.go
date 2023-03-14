@@ -3,5 +3,7 @@ package card
 import "fmt"
 
 func (c Card) String() string {
-	return fmt.Sprint(string(c.Color.Code) + string(c.Symbol.Code))
+	// if you need to know the color as well
+	// return fmt.Sprint(c.Color.Code) + c.Symbol.Code)
+	return fmt.Sprint(c.Symbol.Code)
 }

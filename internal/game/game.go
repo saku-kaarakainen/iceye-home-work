@@ -1,7 +1,6 @@
 package game
 
 import (
-	"fmt"
 	"larvis/internal/actor"
 	"larvis/internal/card"
 )
@@ -23,7 +22,7 @@ func (g *game) GetWinner() *actor.Actor {
 	// significant points
 	sp1 := g.Player1.Deck.Points[0]
 	sp2 := g.Player2.Deck.Points[0]
-	
+
 	if sp1 == sp2 {
 		sp1 = g.Player1.Deck.Points[1]
 		sp2 = g.Player2.Deck.Points[1]
@@ -36,9 +35,4 @@ func (g *game) GetWinner() *actor.Actor {
 	} else {
 		return &g.Player2
 	}
-}
-
-func (g *game) PlayAgain() bool {
-	fmt.Println("play again")
-	return false
 }
