@@ -12,8 +12,7 @@ func NewGame() *game {
 	}
 }
 
-func (g *game) GetWinner() *hand.Hand{
-	// significant points
+func (g *game) GetWinner() *hand.Hand {
 	sp1 := g.Hands[0].Score[0]
 	sp2 := g.Hands[1].Score[0]
 

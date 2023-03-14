@@ -38,33 +38,38 @@ func (h *Hand) ReadHand() {
 	h.Cards = scanner.Text()
 }
 
-func (h *Hand) IsValidHand() bool {
+func (h *Hand) IsValidHand() error {
 	if len(h.Cards) != h.cfg.HandSize {
-		return false
+		return fmt.Errorf("hand size:%d, your hand:%d", h.cfg.HandSize, len(h.Cards))
 	}
 
 	for _, c := range h.Cards {
 		_, exists := h.symCfg[c]
 		if !exists {
-			return false
+			return fmt.Errorf("unknown symbol: %c", c)
 		}
 	}
 
-	return true
+	return nil
 }
 
 func (h *Hand) CalculatePoints() {
+	fmt.Println("Calculating points...")
 	// sort combinations by value, so that the most value combination
 	// will be checked first
 	sort.Sort(ByValueDesc(h.cfg.Combinations))
 
 	for _, comb := range h.cfg.Combinations {
+		fmt.Println("Checking: ", comb.Name)
 		isHand := GetMethod(HandType(comb.Method))
 		isIt, point := isHand(h.symCfg, h.Cards)
 
 		if isIt {
+			fmt.Println("Found: ", comb.Name)
 			h.Score = [2]int{comb.Value, point}
 			h.ScoreName = HandType(comb.Name)
+
+			fmt.Println("Score: ", h.Score)
 		}
 	}
 }
