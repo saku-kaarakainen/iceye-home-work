@@ -50,7 +50,11 @@ func main() {
 	actor.ShowCards(g.Player2)
 
 	winner := g.GetWinner()
-	fmt.Printf("Winner: %s\n", winner.Name)
+	if (winner == nil) {
+		fmt.Println("TIE")
+	} else {
+		fmt.Printf("Winner: %s\n", winner.Name)
+	}
 
 	actor.TakeCardsBack(
 		&g.Dealer,
