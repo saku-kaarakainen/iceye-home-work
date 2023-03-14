@@ -12,17 +12,16 @@ func main() {
 	symbolMap := card.MustCvrtSymbolsToMap(cfg.Domains.Card.Symbols)
 
 	handCount := 2
-	var hands [2]hand.Hand
-
+	game := game.NewGame()
 	for i := 0; i < handCount; i++ {
-		hands[i] = hand.New(
+		game.Hands[i] = hand.New(
 			cfg.Domains.Hand,
 			symbolMap,
 			fmt.Sprintf("Hand %d", i+1),
 		)
-		hands[i].ReadHand()
-		if hands[i].IsValidHand() {
-			hands[i].CalculatePoints()
+		game.Hands[i].ReadHand()
+		if game.Hands[i].IsValidHand() {
+			game.Hands[i].CalculatePoints()
 			break
 		}
 	}

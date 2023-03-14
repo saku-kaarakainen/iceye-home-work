@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"larvis/internal/card"
-	"larvis/internal/deck"
+	"larvis/internal/hand"
 	"larvis/internal/game"
 )
 

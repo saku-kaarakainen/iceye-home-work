@@ -3,18 +3,17 @@ package hand
 import (
 	"bufio"
 	"fmt"
-	"larvis/internal/card"
 	"os"
 	"sort"
 )
 
 type Hand struct {
-	Name  string
-	Cards string
-	Score [2]int
+	Name      string
+	Cards     string
+	Score     [2]int
 	ScoreName HandType
 
-	cfg HandConfig
+	cfg    HandConfig
 	symCfg map[rune]int
 }
 
@@ -22,10 +21,10 @@ func New(
 	cfg HandConfig,
 	symCfg map[rune]int,
 	name string,
-	) Hand {
+) Hand {
 	return Hand{
-		Name: name, 
-		cfg: cfg,
+		Name:   name,
+		cfg:    cfg,
 		symCfg: symCfg,
 	}
 }
