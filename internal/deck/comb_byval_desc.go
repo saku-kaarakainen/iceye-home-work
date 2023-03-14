@@ -11,6 +11,5 @@ func (s ByValueDesc) Swap(i, j int) {
 }
 
 func (s ByValueDesc) Less(i, j int) bool {
-    // Note that this is reversed
     return s[i].Value > s[j].Value
 }
