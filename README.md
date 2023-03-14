@@ -6,38 +6,44 @@ Homework of ICEYE for the job application process
 
 if you have make tools installed, you can run with `make` - command. If not, try to run this: `docker build -t larvis . && docker run larvis:latest`.
 
-## Decisions / Comments
+## Used tools
+ - [Air](https://github.com/cosmtrek/air) - to improve development speed. 
+It is used to reload files, and only configured locally. Therefore it's not inside the docker, but there are configuration files `.zshrc`and `air.toml` in the repo.
 
-### Project structure
+
+## Project structure
 
 The app is trying to follow this code structure:
 https://github.com/golang-standards/project-layout
 
-The project is also trying to respect domain driven design.
+Key take is that code is structed:
+ - [root] - app specific files, main.go, root_config.go
+ - internal - all the domains
+ - pkg - "public" code. it contains mostly utility functions.
 
-### Used tools
-[Air](https://github.com/cosmtrek/air) - to improve development speed. 
-It is used to reload files, and only configured locally. Therefore it's not inside the docker, but there are configuration files `.zshrc`and `air.toml`.
+The project is also trying to respect domain driven design. There are more about the domains later.
 
 ### Justifications
 #### Why DDD?
- - It keeps code clean. It makes app scale easier. It's not perfect. It's a bit overkill for this small application, but the purpose is to demonstrate my abilities to use DDD.
+ - It keeps code clean and makes app scale easier. It's not perfect, and even a bit overkill for small application like this, but the purpose is to demonstrate my abilities to use DDD.
  
  #### Why no database? 
-  - I did not see any justification to add a DB. The configurations could have stored in DB. However they are needed to store in the repo in order to run the app. Therefore, for this version DB is not needed. It could be added on version 2.
+  - I did not see any justification to add a DB. The configurations could have stored in DB. However they are needed to store in the repo in order to run the app. Even with the DB you would have needed to seed the DB. Therefore, for this version DB is not needed. It could be added on version 2.
   
  #### Testing
   - There are very few unit tests. I aimed to test atleast the most "business" critical code lines. Having much higher test coverage would increase time spent, and sadly I do not have that much time available.
   - In terms of testing, I would add tests for most methods inside inside `internal` - package, they contain practically all the business logic.
   - I would also consider adding e2e or integration test(s) to make sure everything works together. I think having atleast one is more important than having many unit tests.
 
-### Domains
 
-- [root] (main)
-- game
-- actor|dealer
-- deck|hand
-- card
+## Domains
+
+- [root] (main) - the required logic to set things up
+- game - logic related to the game itself
+- actor|dealer - the player, the one who has the cards, but also the dealer
+- deck|hand - holds the cards of an Actor.
+- card - A single component where the decks are composed
+
 
 Notes:
 - Dealer is a special type of Actor
