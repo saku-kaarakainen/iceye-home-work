@@ -11,7 +11,7 @@ func (d Deck) String() string {
 func handToString(d Deck) string {
 	var hand string
 	for _, card := range d.Cards {
-		hand += fmt.Sprintf("%s", card)
+		hand += card.String()
 	}
 
 	return hand
