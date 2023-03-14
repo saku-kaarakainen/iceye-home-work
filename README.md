@@ -6,11 +6,6 @@ Homework of ICEYE for the job application process
 
 if you have make tools installed, you can run with `make` - command. If not, try to run this: `docker build -t larvis . && docker run larvis:latest`.
 
-## Used tools
-
-- [Air](https://github.com/cosmtrek/air) - to improve development speed.
-  It is used to reload files, and only configured locally. Therefore it's not inside the docker, but there are configuration files `.zshrc`and `air.toml` in the repo.
-
 ## Project structure
 
 The app is trying to follow this code structure:
