@@ -16,9 +16,9 @@ It is used to reload files, and only configured locally. Therefore it's not insi
 The app is trying to follow this code structure:
 https://github.com/golang-standards/project-layout
 
-Key take is that code is structed:
+Key points of this project
  - [root] - app specific files, main.go, root_config.go
- - internal - all the domains
+ - internal - all the domains, a.k.a. business logic
  - pkg - "public" code. it contains mostly utility functions.
 
 The project is also trying to respect domain driven design. There are more about the domains later.
@@ -26,6 +26,10 @@ The project is also trying to respect domain driven design. There are more about
 ### Justifications
 #### Why DDD?
  - It keeps code clean and makes app scale easier. It's not perfect, and even a bit overkill for small application like this, but the purpose is to demonstrate my abilities to use DDD.
+ 
+ #### Why configs are stored in json?
+  - There is built in support for JSON, so with that I did not need to use external libraries.
+ 
  
  #### Why no database? 
   - I did not see any justification to add a DB. The configurations could have stored in DB. However they are needed to store in the repo in order to run the app. Even with the DB you would have needed to seed the DB. Therefore, for this version DB is not needed. It could be added on version 2.
