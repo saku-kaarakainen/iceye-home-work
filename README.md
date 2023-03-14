@@ -44,12 +44,14 @@ The project is also trying to respect domain driven design. There are more about
 - deck|hand - holds the cards of an Actor.
 - card - A single component where the decks are composed
 
-
-Notes:
+### Notes:
 - Dealer is a special type of Actor
 - Hand is a special type of Deck
 
-Domain relationships:
+### Visualization
+![visualization of domains](./domains-visual.png)
+
+### Domain relationships:
 
 ```plantuml
 @startuml
