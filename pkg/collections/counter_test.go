@@ -2,6 +2,7 @@ package collections
 
 import "testing"
 
+// TestStrAnalyzer is a unit test for the CountSameLetters function.
 func TestStrAnalyzer(t *testing.T) {
 	testCases := []struct {
 		input string

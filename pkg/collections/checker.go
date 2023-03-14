@@ -1,5 +1,15 @@
 package collections
 
+// HasValue checks if the given map contains a value, 
+// and returns true and the key that has the value if found.
+// Otherwise, it returns false and the zero value of T.
+//
+// Type T must be comparable, which means that 
+// the equality operator == must be defined for type T.
+//
+// Example:
+//   m := map[string]int{"apple": 1, "banana": 2, "cherry": 3}
+//   found, key := HasValue(m, 2)
 func HasValue[T comparable](m map[T]int, target int) (bool, T) {
 	for k, v := range m {
 		if v == target {
