@@ -3,5 +3,5 @@ package card
 import "fmt"
 
 func (c Card) String() string {
-	return fmt.Sprintf("%s%s", c.Color.Code, c.Symbol.Name)
+	return fmt.Sprint(string(c.Color.Code) + string(c.Symbol.Code))
 }

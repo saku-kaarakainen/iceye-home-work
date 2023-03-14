@@ -1,6 +1,10 @@
 package deck
 
-import c "larvis/pkg/collections"
+import (
+	col "larvis/pkg/collections"
+	conv "larvis/pkg/convert"
+	m "larvis/pkg/math"
+)
 
 // hand could be separate domain.
 type Hand string
@@ -14,8 +18,8 @@ const (
 	HighCard   Hand = "HIGHCARD"
 )
 
-func GetMethod(hand Hand) func(string) bool {
-	return map[Hand]func(string) bool{
+func GetMethod(hand Hand) func(map[rune]int, string) (bool, int) {
+	return map[Hand]func(map[rune]int, string) (bool, int){
 		FourOfKind: IsFourOfKind,
 		Triple:     IsTripple,
 		FullHouse:  IsFullHouse,
@@ -25,29 +29,45 @@ func GetMethod(hand Hand) func(string) bool {
 	}[hand]
 }
 
-func IsFourOfKind(value string) bool {
-	return c.HasValue(c.CountSameLetters(value), 4)
+func IsFourOfKind(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	res, run := col.HasValue(data, 4)
+	return res, cardValues[run]
 }
 
-func IsFullHouse(value string) bool {
-	res := c.CountSameLetters(value)
-	return c.HasValue(res, 3) && c.HasValue(res, 2)
+func IsFullHouse(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	msk, key := col.HasValue(data, 3)
+	lsk, _ := col.HasValue(data, 2)
+
+	return msk && lsk, cardValues[key]
 }
 
-func IsTripple(value string) bool {
-	return c.HasValue(c.CountSameLetters(value), 3)
+func IsTripple(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	res, run := col.HasValue(data, 3)
+	return res, cardValues[run]
 }
 
-func IsTwoPairs(value string) bool {
-	return c.HasNKeysWithSameValue(c.CountSameLetters(value), 2, 2)
+func IsTwoPairs(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	res, keys := col.HasNKeysWithSameValue(data, 2, 2)
+	vals := conv.ConvertWithMapping(keys, cardValues)
+
+	return res, m.FindMax(vals)
 }
 
-func IsPair(value string) bool {
-	return c.HasValue(c.CountSameLetters(value), 2)
+func IsPair(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	res, run := col.HasValue(data, 2)
+	return res, cardValues[run]
 }
 
-func IsHighCard(value string) bool {
-	// High card is trivial because
-	// it is always true if there is no other hand.
-	return true
+func IsHighCard(cardValues map[rune]int, value string) (bool, int) {
+	keys := []rune(value)
+	vals := conv.ConvertWithMapping(keys, cardValues)
+
+	// This logic expects that the other hand types are checked first.
+	// then there are nothing else left, so it must be high card.
+	return true, m.FindMax(vals)
 }

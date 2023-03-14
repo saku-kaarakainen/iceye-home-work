@@ -1,12 +1,14 @@
 package collections
 
-func HasValue[T comparable](m map[T]int, target int) bool {
-	for _, v := range m {
+func HasValue[T comparable](m map[T]int, target int) (bool, T) {
+	for k, v := range m {
 		if v == target {
-			return true
+			return true, k
 		}
 	}
-	return false
+
+	var def T
+	return false, def
 }
 
 // HasNKeysWithSameValue checks if the given map has n keys 
@@ -33,12 +35,14 @@ func HasNKeysWithSameValue[T comparable](
 	m map[T]int,
 	value int,
 	count int,
-) bool {
+) (bool, []T) {
 	var c int
-	for _, v := range m {
+	keys := make([]T, 0)
+	for k, v := range m {
 		if v == value {
 			c++
+			keys = append(keys, k)
 		}
 	}
-	return c == count
+	return c == count, keys
 }

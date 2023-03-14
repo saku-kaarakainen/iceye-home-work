@@ -6,7 +6,7 @@ type Color struct {
 }
 
 type Symbol struct {
-	Name  string `json:"name"`
+	Code  string `json:"code"`
 	Value int    `json:"value"`
 }
 

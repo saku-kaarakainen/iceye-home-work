@@ -11,6 +11,8 @@ import (
 
 func main() {
 	cfg, _ := LoadConfig("./configs/config.json")
+	// convert symbols into map, so they can be passed over different domains
+	symbolsMap := card.MustCvrtSymbolsToMap(cfg.Domains.Card.Symbols)
 
 	// initialize the game table
 	g := game.NewGame(cfg.Domains.Game)
@@ -35,20 +37,30 @@ func main() {
 			&g.Player1,
 			&g.Player2)
 
-		actor.ShowCards(g.Player1)
-		pp := deck.CalculatePoints(cfg.Domains.Deck, g.Player1.Deck)
+		deck.CalculatePoints(
+			cfg.Domains.Deck,
+			symbolsMap,
+			&g.Player1.Deck)
 
+		deck.CalculatePoints(
+			cfg.Domains.Deck,
+			symbolsMap,
+			&g.Player2.Deck)
+
+		actor.ShowCards(g.Player1)
 		actor.ShowCards(g.Player2)
-		lp := deck.CalculatePoints(cfg.Domains.Deck, g.Player2.Deck)
-	
-		g.DeclareWinner()
+
+		winner := g.GetWinner()
+		fmt.Printf("Winner is %s\n", winner.Name)
 
 		actor.TakeCardsBack(
 			&g.Dealer,
 			&g.Player1,
 			&g.Player2)
 
-		time.Sleep(5 * time.Second)
+		fmt.Println("Sleeping for 3 seconds...")
+		time.Sleep(3 * time.Second)
+		fmt.Println("Waking up...")
 		// if !g.PlayAgain() {
 		// 	break
 		// }
