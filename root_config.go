@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"io/ioutil"
-	"larvis/internal/actor"
 	"larvis/internal/card"
 	"larvis/internal/deck"
 	"larvis/internal/game"
@@ -12,9 +11,6 @@ import (
 type DomainConfig struct {
 	// game
 	Game game.GameConfig `json:"game"`
-
-	// actor
-	Actor actor.ActorConfig `json:"actor"`
 
 	// deck
 	Deck deck.DeckConfig `json:"deck"`

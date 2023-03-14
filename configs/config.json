@@ -1,12 +1,11 @@
 {
     "domains": {
-        "game": {
-            "cardsPerPlayer": 5
-        },
+        "game": {},
 
         "actor": {},
 
         "deck": {
+            "handSize": 5,
             "combinations": [
                 { "name": "four of a kind", "value": 5, "method": "FOUROFAKIND" },            
                 { "name": "triple",         "value": 3, "method": "TRIPLE" },
@@ -18,13 +17,6 @@
         },
    
         "card": {
-            "colors": [
-                { "code": "H", "name": "heart" },
-                { "code": "D", "name": "diamond" },
-                { "code": "C", "name": "club" },
-                { "code": "S", "name": "spade" }
-            ],
-
             "symbols": [
                 { "code": "2", "value": 2 },
                 { "code": "3", "value": 3 },

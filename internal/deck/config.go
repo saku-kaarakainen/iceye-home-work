@@ -7,5 +7,6 @@ type Combination struct {
 }
 
 type DeckConfig struct {
+	HandSize     int           `json:"handSize"`
 	Combinations []Combination `json:"combinations"`
 }

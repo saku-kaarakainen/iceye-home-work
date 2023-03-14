@@ -1,6 +1,6 @@
 .PHONY: run
 run:
-	docker build -t larvis . && docker run larvis:latest
+	docker build -t larvis . && docker run -i larvis:latest
 
 .PHONY: test
 test:

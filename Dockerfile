@@ -14,8 +14,6 @@ RUN go build -o larvis && \
     adduser -S larvisuser -G larvisgroup && \
     chown -R larvisuser:larvisgroup /pokergame
 
-
-
 # Run
 # Use locked version in order to avoid breaking changes
 # The image is locked on major version 3 and minor version is not locked.
