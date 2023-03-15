@@ -1,6 +1,8 @@
 {
     "domains": {
-        "game": {},
+        "game": {
+            "playerCount": 2
+        },
 
         "hand": {
             "handSize": 5,

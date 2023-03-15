@@ -17,6 +17,7 @@ func (g *game) GetWinner() *hand.Hand {
 	sp2 := g.Hands[1].Score[0]
 
 	if sp1 == sp2 {
+		// Both have same hand
 		sp1 = g.Hands[0].Score[1]
 		sp2 = g.Hands[1].Score[1]
 	}

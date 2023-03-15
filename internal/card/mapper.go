@@ -2,7 +2,7 @@ package card
 
 import "larvis/pkg/convert"
 
-func MustCvrtSymbolsToMap(symbols []Symbol) map[rune]int {
+func MustCvrtSymbolsToMap(symbols []SymbolConfig) map[rune]int {
 	symbolMap := make(map[rune]int)
 
 	for _, symbol := range symbols {
@@ -15,4 +15,3 @@ func MustCvrtSymbolsToMap(symbols []Symbol) map[rune]int {
 	}
 	return symbolMap
 }
-

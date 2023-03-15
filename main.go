@@ -9,23 +9,22 @@ import (
 
 func main() {
 	cfg, _ := LoadConfig("./configs/config.json")
-	fmt.Println(cfg)
 	symbolMap := card.MustCvrtSymbolsToMap(cfg.Domains.Card.Symbols)
-	fmt.Println(symbolMap)
-	handCount := 2
+
 	game := game.NewGame()
-	for i := 0; i < handCount; i++ {
+	for i := 0; i < cfg.Domains.Game.PlayerCount; i++ {
+		game.Hands[i] = hand.New(
+			cfg.Domains.Hand,
+			symbolMap,
+			fmt.Sprintf("Hand %d", i+1),
+		)
+
 		for {
-			game.Hands[i] = hand.New(
-				cfg.Domains.Hand,
-				symbolMap,
-				fmt.Sprintf("Hand %d", i+1),
-			)
 			game.Hands[i].ReadHand()
 
-			err := game.Hands[i].IsValidHand() 
-			if err == nil {
-				fmt.Println(err)
+			err := game.Hands[i].IsValidHand()
+			if err != nil {
+				fmt.Println("I'm sorry I can't calculate the score for your hand, because ", err)
 				continue
 			}
 
@@ -38,7 +37,8 @@ func main() {
 	if winner == nil {
 		fmt.Print("Winner: TIE")
 	} else {
-		fmt.Print("Winner: %s", winner.Name)
+		fmt.Printf("Winner: %s", winner.Name)
 	}
 	fmt.Println()
+	fmt.Println("Thank you for playing poker with LARVIS!")
 }

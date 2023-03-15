@@ -1,3 +1,5 @@
 package game
 
-type GameConfig struct {}
+type GameConfig struct {
+	PlayerCount int `json:"playerCount"`
+}
