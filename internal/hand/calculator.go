@@ -1,32 +1,35 @@
 package hand
 
-import "sort"
+import (
+	"fmt"
+	"larvis/internal/hand/calc"
+	"sort"
+)
 
 func (h *Hand) CalculatePoints() {
-	var score int
-	i, hand := h.getHandIndex()
+	h.calc.CalcData(h.Cards)
+	comb := h.getCombination()
 
-	// add base points
-	length := len(h.cfg.Combinations) // 6
-	score = i * length // for example: (full house) 5 * 6 = 30
-
-	// add additional points
-	score += 
+	// set base points, for example
+	// high card 0
+	// pair 100
+	// full house 400
+	// 1000 is just arbitrary big number
+	score := comb.Value * 100000000000
+	fmt.Println("score", score)
 }
 
-func (h *Hand) getHandIndex() (int, HandType) {
+func (h *Hand) getCombination() Combination {
 	// sort combinations by value, so that the most value combination
 	// will be checked first
-	var hand HandType
 	sort.Sort(ByValueDesc(h.cfg.Combinations))
-	for i, comb := range h.cfg.Combinations {
-		hand = HandType(comb.Method)
-		getIsHand := h.getMethod(hand)
-		
-		if getIsHand(h.Cards) {
-			return len(h.cfg.Combinations) - 1 - i, hand
+	for _, comb := range h.cfg.Combinations {
+		hand := calc.HandType(comb.Method)
+		isHand := h.calc.GetChecker(hand)()
+		if isHand {
+			return comb
 		}
 	}
 
-	return 0, hand
+	panic("no combination found")
 }

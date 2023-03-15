@@ -1,5 +1,9 @@
 package hand
 
+import (
+	"larvis/internal/hand/calc"
+)
+
 type Reader interface {
 	ReadHand()
 }
@@ -13,13 +17,13 @@ type Calculator interface {
 }
 
 type Hand struct {
-	Name      string
-	Cards     string
-	Score     [2]int
-	ScoreName HandType
+	Name  string
+	Cards string
+	Score [2]int
 
 	cfg    HandConfig
 	symCfg map[rune]int
+	calc   *calc.Calc
 }
 
 func New(
@@ -31,6 +35,7 @@ func New(
 		Name:   name,
 		cfg:    cfg,
 		symCfg: symCfg,
+		calc:   calc.NewCalc(symCfg),
 	}
 }
 
