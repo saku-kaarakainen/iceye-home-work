@@ -7,6 +7,16 @@ import (
 	"sort"
 )
 
+// gets score and data
+//
+// data is passed as an array of key-value pairs,
+// so that it's order can be determnistic.
+//
+// - score (1st item) - integer value of the hand. It's not necessary suitable to compare as-is, 
+// because it does not take into account of the hand, e.g. if the hand is full house or triple.
+//
+// - data (2nd item)  - ordered data of the hand. first item ist the most valuable group. 
+// Key is the value of the card and value is amount of such cards.
 func GetScoreAndData(
 	cfg map[rune]int,
 	value string,
@@ -63,11 +73,6 @@ func flatten(data []t.KeyValuePair[int, int]) []int {
 	}
 	return arr
 }
-
-// 14 max per card
-// i=0
-// 		-> 14-0 -> 14
-// 		-> 13
 
 func sliceToInt(s []int, base int) int {
 	res := 0
