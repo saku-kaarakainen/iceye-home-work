@@ -5,13 +5,15 @@ import t "larvis/pkg/types"
 func KeyExists[Key comparable, Value any](
 	dict []t.KeyValuePair[Key, Value],
 	key Key,
-) bool {
+) (bool, Value) {
 	for _, kvp := range dict {
 		if kvp.Key == key {
-			return true
+			return true, kvp.Value
 		}
 	}
-	return false
+
+	var empty Value
+	return false, empty
 }
 
 // ContainsValue checks if the given key-value-pair array contains a value,
