@@ -41,7 +41,7 @@ The project is also trying to respect domain driven design. There are more about
 
 - There are no unit tests. I actually had before, but decided to remove them. Instead of unit tests, I have one integration test, that tests ~half the components. However the test is table driven with large data set. The integration test tests better than the isolated tests. There are some edge cases that might be missed out, but even then I think an anohter integration or e2e would catch the edge case better. 
 
-## Domains
+### Domains
 
 - [root] (main) - the required logic to set things up
 - game - logic related to the game itself
@@ -51,7 +51,7 @@ The project is also trying to respect domain driven design. There are more about
 
 
 
-### Domain relationships:
+#### Domain relationships:
 There are relationships in order to keep domains isolated. 
 
 ```plantuml
