@@ -2,6 +2,19 @@ package collections
 
 import "sort"
 
+func comp(
+	keys []int,
+	m map[int]int,
+	i, j int) bool {
+	iKey := keys[i]
+	jKey := keys[j]
+
+	iVal := m[iKey]
+	jVal := m[jKey]
+
+	return iVal > jVal
+}
+
 // TODO: Make generic
 func SortMapByValues(m map[int]int) map[int]int {
 	// Create a slice to store the keys
@@ -17,11 +30,11 @@ func SortMapByValues(m map[int]int) map[int]int {
 
 	// Sort the keys slice
 	sort.Slice(keys, func(i, j int) bool {
-		return m[keys[i]] < m[keys[j]]
+		return comp(keys, m, i, j)
 	})
 
 	sort.Slice(vals, func(i, j int) bool {
-		return m[keys[i]] < m[keys[j]]
+		return m[keys[i]] > m[keys[j]]
 	})
 
 	// populate the result
@@ -29,6 +42,6 @@ func SortMapByValues(m map[int]int) map[int]int {
 		key := keys[k]
 		res[key] = val
 	}
-	
+
 	return res
 }

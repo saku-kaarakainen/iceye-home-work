@@ -8,13 +8,13 @@ type testCase struct {
 
 func geTestCases() []testCase {
 	return []testCase{
-		// { Hand1: "AAAQQ", Hand2: "QQAAA", Winner: "Tie" },
-		// { Hand1: "53QQ2", Hand2: "Q53Q2", Winner: "Tie" },
-		// { Hand1: "53888", Hand2: "88385", Winner: "Tie" },
-		// { Hand1: "QQAAA", Hand2: "AAAQQ", Winner: "Tie" },
-		// { Hand1: "Q53Q2", Hand2: "53QQ2", Winner: "Tie" },
-		// { Hand1: "88385", Hand2: "53888", Winner: "Tie" },
-		//{ Hand1: "AAAQQ", Hand2: "QQQAA", Winner: "Hand 1" },
+		{Hand1: "AAAQQ", Hand2: "QQAAA", Winner: "Tie"},
+		{Hand1: "53QQ2", Hand2: "Q53Q2", Winner: "Tie"},
+		{Hand1: "53888", Hand2: "88385", Winner: "Tie"},
+		{Hand1: "QQAAA", Hand2: "AAAQQ", Winner: "Tie"},
+		{Hand1: "Q53Q2", Hand2: "53QQ2", Winner: "Tie"},
+		{Hand1: "88385", Hand2: "53888", Winner: "Tie"},
+		{Hand1: "AAAQQ", Hand2: "QQQAA", Winner: "Hand 1"},
 		{Hand1: "Q53Q4", Hand2: "53QQ2", Winner: "Hand 1"},
 		{Hand1: "53888", Hand2: "88375", Winner: "Hand 1"},
 		{Hand1: "33337", Hand2: "QQAAA", Winner: "Hand 1"},

@@ -1,20 +1,21 @@
 package game
 
-import "larvis/internal/calc"
-
 func (g *game) GetWinner() string {
-	switch calc.FindBiggerScore(
-		g.Hands[0].Score,
-		g.Hands[1].Score,
-	) {
-	case calc.AisBigger:
-		return "Hand 1"
-	case calc.BisBigger:
-		return "Hand 2"
-	case calc.Tie:
-	default:
-		return "Tie"
+	// check hands
+	if g.Hands[0].Combination.Value > g.Hands[1].Combination.Value {
+		return g.Hands[0].Name
+	}
+	if g.Hands[0].Combination.Value < g.Hands[1].Combination.Value {
+		return g.Hands[1].Name
 	}
 
-	panic("unreachable")
+	// both have same hand, check score
+	if g.Hands[0].Score > g.Hands[1].Score {
+		return g.Hands[0].Name
+	}
+	if g.Hands[0].Score < g.Hands[1].Score {
+		return g.Hands[1].Name
+	}
+
+	return "Tie"
 }

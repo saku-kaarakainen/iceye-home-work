@@ -16,7 +16,7 @@ type Hand struct {
 	Name  string
 	Cards string
 
-	Score       map[int]int
+	Score       int
 	Combination Combination
 
 	cfg    HandConfig

@@ -6,8 +6,9 @@ import (
 )
 
 func (h *Hand) Calculate() {
-	h.Score = calc.GetData(h.symCfg, h.Cards)
-	h.Combination = h.getCombination(h.Score)
+	score, data := calc.GetScoreAndData(h.symCfg, h.Cards)
+	h.Score = score
+	h.Combination = h.getCombination(data)
 }
 
 func (h *Hand) getCombination(data map[int]int) Combination {
