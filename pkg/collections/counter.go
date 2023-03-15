@@ -1,40 +1,21 @@
 package collections
 
-func Count[T comparable](array []T) map[T]int {
-	m := make(map[T]int)
+import t "larvis/pkg/types"
 
-	for _, val := range array {
+// key is value of the array.
+// value is the count of such values
+func Count[T comparable](array []T) []t.KeyValuePair[T, int] {
+	tArr := make([]t.KeyValuePair[T, int], 0)
+
+	for i, val := range array {
 		// Check if a key is present in the map
-		if c, ok := m[val]; ok {
-			m[val] = c + 1
+		if KeyExists(tArr, val) {
+			tArr[i].Value = tArr[i].Value + 1
 		} else {
-			m[val] = 1
+			tArr[i].Value = 1
 		}
 	}
 
-	return m
+	return tArr
 }
 
-// CountSameLetters returns a map where the keys are runes
-// and the values are the number of occurrences of each rune
-// in the input string.
-//
-// Example:
-//
-//	result := CountSameLetters("hello")
-//	// result is a map with the following key-value pairs:
-//	// {'h': 1, 'e': 1, 'l': 2, 'o': 1}
-func CountSameLetters(value string) map[rune]int {
-	m := make(map[rune]int)
-
-	for _, c := range value {
-		// Check if a key is present in the map
-		if val, ok := m[c]; ok {
-			m[c] = val + 1
-		} else {
-			m[c] = 1
-		}
-	}
-
-	return m
-}

@@ -3,13 +3,14 @@ package calc
 import (
 	coll "larvis/pkg/collections"
 	conv "larvis/pkg/convert"
+	t "larvis/pkg/types"
 	"sort"
 )
 
 func GetScoreAndData(
 	cfg map[rune]int,
 	value string,
-) (int, map[int]int) {
+) (int, []t.KeyValuePair[int, int]) {
 	data := toData(cfg, value)
 	idx := toIndex(cfg, data)
 	return idx, data
@@ -18,7 +19,7 @@ func GetScoreAndData(
 func toData(
 	cfg map[rune]int,
 	value string,
-) map[int]int {
+) []t.KeyValuePair[int, int] {
 	// data as characters
 	runes := []rune(value)
 
@@ -35,12 +36,16 @@ func toData(
 
 	group := coll.Count(vals)
 
-	return coll.SortMapByValues(group)
+	sort.Slice(group, func(i, j int) bool {
+		return group[i].Value > group[j].Value
+	})
+
+	return group
 }
 
 func toIndex(
 	cfg map[rune]int,
-	data map[int]int,
+	data []t.KeyValuePair[int, int],
 ) int {
 	// flatten the array
 	cards := flatten(data)
@@ -49,11 +54,11 @@ func toIndex(
 	return i
 }
 
-func flatten(data map[int]int) []int {
+func flatten(data []t.KeyValuePair[int, int]) []int {
 	arr := make([]int, 0)
-	for key, value := range data {
-		for i := 0; i < value; i++ {
-			arr = append(arr, key)
+	for _, kvp := range data {
+		for i := 0; i < kvp.Value; i++ {
+			arr = append(arr, kvp.Key)
 		}
 	}
 	return arr
@@ -65,11 +70,11 @@ func flatten(data map[int]int) []int {
 // 		-> 13
 
 func sliceToInt(s []int, base int) int {
-    res := 0
-    op := 1
-    for i := len(s) - 1; i >= 0; i-- {
-        res += s[i] * op
-        op *= base
-    }
-    return res
+	res := 0
+	op := 1
+	for i := len(s) - 1; i >= 0; i-- {
+		res += s[i] * op
+		op *= base
+	}
+	return res
 }

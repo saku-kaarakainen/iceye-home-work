@@ -1,6 +1,20 @@
 package collections
 
-// HasValue checks if the given map contains a value,
+import t "larvis/pkg/types"
+
+func KeyExists[Key comparable, Value any](
+	dict []t.KeyValuePair[Key, Value],
+	key Key,
+) bool {
+	for _, kvp := range dict {
+		if kvp.Key == key {
+			return true
+		}
+	}
+	return false
+}
+
+// ContainsValue checks if the given key-value-pair array contains a value,
 // and returns true and the key that has the value if found.
 // Otherwise, it returns false and the zero value of T.
 //
@@ -11,9 +25,12 @@ package collections
 //
 //	m := map[string]int{"apple": 1, "banana": 2, "cherry": 3}
 //	found, key := HasValue(m, 2)
-func HasValue[T comparable](m map[T]int, target int) bool {
-	for _, v := range m {
-		if v == target {
+func ContainsValue[K comparable, V comparable](
+	dict []t.KeyValuePair[K, V], 
+	value V,
+	) bool {
+	for _, kvp := range dict {
+		if kvp.Value == value {
 			return true
 		}
 	}
@@ -42,16 +59,15 @@ func HasValue[T comparable](m map[T]int, target int) bool {
 //   - The function assumes that the map has no nil keys. If the map contains nil keys,
 //     the behavior of this function is undefined.
 //   - If the map has less than `count` keys with the same value, the function returns false.
-func HasNKeysWithSameValue[T comparable](
-	m map[T]int,
-	value int,
-	count int,
-) bool {
-	var c int
-	for _, v := range m {
-		if v == value {
+func CountValues[K comparable, V comparable](
+	dict []t.KeyValuePair[K, V], 
+	val V,
+) int {
+	c := 0
+	for _, v := range dict {
+		if v.Value == val {
 			c++
 		}
 	}
-	return c == count
+	return c
 }

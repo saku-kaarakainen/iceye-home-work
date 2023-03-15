@@ -2,6 +2,7 @@ package hand
 
 import (
 	"larvis/internal/calc"
+	"larvis/pkg/types"
 	"sort"
 )
 
@@ -11,7 +12,7 @@ func (h *Hand) Calculate() {
 	h.Combination = h.getCombination(data)
 }
 
-func (h *Hand) getCombination(data map[int]int) Combination {
+func (h *Hand) getCombination(data []types.KeyValuePair[int, int]) Combination {
 	// sort combinations by value, so that the most value combination
 	// will be checked first
 	sort.Sort(ByValueDesc(h.cfg.Combinations))

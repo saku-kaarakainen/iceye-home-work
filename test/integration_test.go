@@ -36,13 +36,15 @@ func TestScoringToWinner(t *testing.T) {
 			h1 := g.Hands[0].Score
 			h2 := g.Hands[1].Score
 
-			fmt.Printf("Hand 1: %s => %d\n", g.Hands[0].Cards, h1)
-			fmt.Printf("Hand 2: %s => %d\n", g.Hands[1].Cards, h2)
-
 			// Test - get winner
 			haveWinner := g.GetWinner()
 
 			if haveWinner != test.Winner {
+				fmt.Println(" - FAIL - ")
+				fmt.Printf("Hand 1: %s => %d\n", g.Hands[0].Cards, h1)
+				fmt.Printf("Hand 2: %s => %d\n", g.Hands[1].Cards, h2)
+				fmt.Println(" - ---- - ")
+
 				t.Errorf("winner - want:'%v', have:'%v'", test.Winner, haveWinner)
 			}
 		})
