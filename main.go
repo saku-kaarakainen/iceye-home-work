@@ -29,7 +29,7 @@ func main() {
 				continue
 			}
 
-			game.Hands[i].CalculatePoints()
+			game.Hands[i].Calculate()
 			break
 		}
 	}

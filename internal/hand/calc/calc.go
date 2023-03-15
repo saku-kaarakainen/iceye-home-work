@@ -6,23 +6,16 @@ import (
 	"sort"
 )
 
-type Calc struct {
-	cfg  map[rune]int
-	data map[int]int
-	hand HandType
-}
-
-func NewCalc(cfg map[rune]int) *Calc {
-	return &Calc{cfg: cfg}
-}
-
-func (c *Calc) CalcData(value string) {
+func GetData(
+	cfg map[rune]int,
+	value string,
+) map[int]int {
 	// data as characters
 	runes := []rune(value)
 
 	// as their internal, configured values
 	vals := conv.Map(runes, func(val rune) int {
-		return c.cfg[val]
+		return cfg[val]
 	})
 
 	// sorted in descending order
@@ -33,6 +26,5 @@ func (c *Calc) CalcData(value string) {
 
 	group := col.Count(vals)
 
-	// set the data
-	c.data = col.SortMapByValues(group)
+	return col.SortMapByValues(group)
 }

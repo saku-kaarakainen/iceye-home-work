@@ -30,8 +30,8 @@ func TestScoringToWinner(t *testing.T) {
 			g.Hands[1].Cards = test.Hand2
 
 			// Test - calculate points
-			g.Hands[0].CalculatePoints()
-			g.Hands[1].CalculatePoints()
+			g.Hands[0].Calculate()
+			g.Hands[1].Calculate()
 
 			// Test - get winner
 			haveWinner := winnerToString(g.GetWinner())
