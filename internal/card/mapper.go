@@ -11,7 +11,7 @@ func MustCvrtSymbolsToMap(symbols []SymbolConfig) map[rune]int {
 			panic(err)
 		}
 
-		symbolMap[run] = symbol.Value
+		symbolMap[run] = symbol.Val
 	}
 	return symbolMap
 }

@@ -2,7 +2,7 @@ package card
 
 type SymbolConfig struct {
 	Code  string `json:"code"`
-	Value int    `json:"value"`
+	Val int    `json:"value"`
 }
 
 type CardConfig struct {

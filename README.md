@@ -4,7 +4,7 @@ Homework of ICEYE for the job application process
 
 ## How to run the app
 
-if you have make tools installed, you can run with `make` - command. If not, try to run this: `docker build -t larvis . && docker run larvis:latest`.
+if you have make tools installed, you can run with `make` - command. If not, try to run this: `docker build -t larvis . && docker run -i larvis:latest`.
 
 ## Project structure
 
