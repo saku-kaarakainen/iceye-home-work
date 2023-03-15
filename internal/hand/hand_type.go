@@ -4,7 +4,6 @@ import (
 	col "larvis/pkg/collections"
 	conv "larvis/pkg/convert"
 	m "larvis/pkg/math"
-	"sort"
 )
 
 type HandType string
@@ -18,85 +17,52 @@ const (
 	HighCard   HandType = "HIGHCARD"
 )
 
-func (h *Hand) getMethod(hand HandType) func(string) (bool, int) {
-	return map[HandType]func(string) (bool, int){
-		FourOfKind: h.IsFourOfKind,
-		Triple:     h.IsTripple,
-		FullHouse:  h.IsFullHouse,
-		TwoPairs:   h.IsTwoPairs,
-		Pair:       h.IsPair,
-		HighCard:   h.IsHighCard,
+func GetMethod(hand HandType) func(map[rune]int, string) (bool, int) {
+	return map[HandType]func(map[rune]int, string) (bool, int){
+		FourOfKind: IsFourOfKind,
+		Triple:     IsTripple,
+		FullHouse:  IsFullHouse,
+		TwoPairs:   IsTwoPairs,
+		Pair:       IsPair,
+		HighCard:   IsHighCard,
 	}[hand]
 }
 
-// sort string and convert them into card's internal value
-func (h *Hand) sortAndVal(value string) []int {
-	// data as characters
-	runes := []rune(value)
-
-	// as their internal, configured values
-	vals := conv.Map(runes, func(val rune) int {
-		return h.symCfg[val]
-	})
-
-	// sorted in descending order
-	// eg. 27T9A -> AT972
-	sort.Slice(vals, func(i, j int) bool { 
-		return vals[i] > vals[j] 
-	})
-
-
-	return vals
+func IsFourOfKind(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	res, run := col.HasValue(data, 4)
+	return res, cardValues[run]
 }
 
+func IsFullHouse(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	msk, key := col.HasValue(data, 3)
+	lsk, _ := col.HasValue(data, 2)
 
-func (h *Hand) rank(cards []int) {
-	// for example 	AAKKK
-	// 				AA432
-	// 				AKKK3
-
-	// each card has reserved 5-bits, 
-	// because there are 5 combinations
-	// most valuable combination has highest index
-	
-	index := getIndex(cards)
-
-
+	return msk && lsk, cardValues[key]
 }
 
-func (h *Hand) IsFourOfKind(value string) bool {
-	data := col.Count(h.sortAndVal(value))
-	return col.HasValue(data, 4)
+func IsTripple(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	res, run := col.HasValue(data, 3)
+	return res, cardValues[run]
 }
 
-func (h *Hand) IsFullHouse(value string) (bool, int) {
-	cards := h.sortAndVal(value)
-	data := col.Count(cards)
-
-	msk := col.HasValue(data, 3) && col.HasValue(data, 2)
-}
-
-func (h *Hand) IsTripple(value string) (bool, int) {
-	data := h.calcData(value)
-	res, key := col.HasValue(data, 3)
-	return res, key
-}
-
-func (h *Hand) IsTwoPairs(value string) (bool, int) {
-	data := h.calcData(value)
+func IsTwoPairs(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
 	res, keys := col.HasNKeysWithSameValue(data, 2, 2)
+	vals := conv.ConvertWithMapping(keys, cardValues)
 
-	return res, m.FindMax(keys)
+	return res, m.FindMax(vals)
 }
 
-func (h *Hand) IsPair(value string) (bool, int) {
-	data := h.calcData(value)
-	res, key := col.HasValue(data, 2)
-	return res, key
+func IsPair(cardValues map[rune]int, value string) (bool, int) {
+	data := col.CountSameLetters(value)
+	res, run := col.HasValue(data, 2)
+	return res, cardValues[run]
 }
 
-func (h *Hand) IsHighCard(value string) (bool, int) {
-	data := h.calcData(value)
+func IsHighCard(cardValues map[rune]int, value string) (bool, int) {
 	keys := []rune(value)
 	vals := conv.ConvertWithMapping(keys, cardValues)
 

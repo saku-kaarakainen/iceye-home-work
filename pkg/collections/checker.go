@@ -46,14 +46,12 @@ func HasNKeysWithSameValue[T comparable](
 	m map[T]int,
 	value int,
 	count int,
-) (bool, []T) {
+) bool {
 	var c int
-	keys := make([]T, 0)
-	for k, v := range m {
+	for _, v := range m {
 		if v == value {
 			c++
-			keys = append(keys, k)
 		}
 	}
-	return c == count, keys
+	return c == count
 }
