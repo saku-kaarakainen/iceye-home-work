@@ -34,7 +34,7 @@ func TestScoringToWinner(t *testing.T) {
 			g.Hands[1].Calculate()
 
 			// Test - get winner
-			haveWinner := winnerToString(g.GetWinner())
+			haveWinner :=g.GetWinner()
 
 			if haveWinner != test.Winner {
 				t.Errorf("winner - want:'%v', have:'%v'", test.Winner, haveWinner)

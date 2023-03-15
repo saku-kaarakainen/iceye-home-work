@@ -1,7 +1,7 @@
 package hand
 
 import (
-	"larvis/internal/hand/calc"
+	"larvis/internal/calc"
 	"sort"
 )
 

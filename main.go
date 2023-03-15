@@ -34,12 +34,7 @@ func main() {
 		}
 	}
 
-	winner := game.GetWinner()
-	if winner == nil {
-		fmt.Print("Winner: TIE")
-	} else {
-		fmt.Printf("Winner: %s", winner.Name)
-	}
+	fmt.Printf("Winner: %s", game.GetWinner())
 	fmt.Println()
 	fmt.Println("Thank you for playing poker with LARVIS!")
 }
