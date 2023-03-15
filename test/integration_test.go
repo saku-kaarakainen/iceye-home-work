@@ -34,19 +34,11 @@ func TestScoringToWinner(t *testing.T) {
 			g.Hands[1].Calculate()
 
 			// Test - get winner
-			haveWinner :=g.GetWinner()
+			haveWinner := g.GetWinner()
 
 			if haveWinner != test.Winner {
 				t.Errorf("winner - want:'%v', have:'%v'", test.Winner, haveWinner)
 			}
 		})
 	}
-}
-
-func winnerToString(hand *hand.Hand) string {
-	if hand == nil {
-		return "Tie"
-	}
-
-	return hand.Name
 }
