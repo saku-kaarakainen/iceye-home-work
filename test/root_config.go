@@ -6,6 +6,9 @@ import (
 	"larvis/internal/hand"
 )
 
+// Copy of the struct from main.go
+// for the integration tests
+
 type DomainConfig struct {
 	// game
 	Game game.GameConfig `json:"game"`

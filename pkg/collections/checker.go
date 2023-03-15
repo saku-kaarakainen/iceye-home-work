@@ -1,41 +1,42 @@
 package collections
 
-// HasValue checks if the given map contains a value, 
+// HasValue checks if the given map contains a value,
 // and returns true and the key that has the value if found.
 // Otherwise, it returns false and the zero value of T.
 //
-// Type T must be comparable, which means that 
+// Type T must be comparable, which means that
 // the equality operator == must be defined for type T.
 //
 // Example:
-//   m := map[string]int{"apple": 1, "banana": 2, "cherry": 3}
-//   found, key := HasValue(m, 2)
-func HasValue[T comparable](m map[T]int, target int) (bool, T) {
-	for k, v := range m {
+//
+//	m := map[string]int{"apple": 1, "banana": 2, "cherry": 3}
+//	found, key := HasValue(m, 2)
+func HasValue[T comparable](m map[T]int, target int) bool {
+	for _, v := range m {
 		if v == target {
-			return true, k
+			return true
 		}
 	}
 
-	var def T
-	return false, def
+	return false
 }
 
-// HasNKeysWithSameValue checks if the given map has n keys 
+// HasNKeysWithSameValue checks if the given map has n keys
 // that have the same value.
 //
-// The function returns true 
-// if there are exactly `count` keys with the same value, 
+// The function returns true
+// if there are exactly `count` keys with the same value,
 // otherwise it returns false.
 //
-// Type T must be comparable, which means that 
+// Type T must be comparable, which means that
 // the equality operator == must be defined for type T.
 //
 // Example:
-//   m := map[rune]int{'a': 1, 'b': 2, 'c': 2}
-//   result := HasNKeysWithSameValue(m, 2, 2)
-//   // result is true because there are two keys ('b' and 'c') 
-//   // that have the value of 2
+//
+//	m := map[rune]int{'a': 1, 'b': 2, 'c': 2}
+//	result := HasNKeysWithSameValue(m, 2, 2)
+//	// result is true because there are two keys ('b' and 'c')
+//	// that have the value of 2
 //
 // Note:
 //   - The function assumes that the map has no nil keys. If the map contains nil keys,

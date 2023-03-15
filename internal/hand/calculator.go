@@ -7,8 +7,9 @@ func (h *Hand) CalculatePoints() {
 	// will be checked first
 	sort.Sort(ByValueDesc(h.cfg.Combinations))
 
+	// get the index
 	for _, comb := range h.cfg.Combinations {
-		isHand := GetMethod(HandType(comb.Method))
+		isHand := h.getMethod(HandType(comb.Method))
 		isIt, point := isHand(h.symCfg, h.Cards)
 
 		if isIt {

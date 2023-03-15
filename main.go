@@ -5,10 +5,11 @@ import (
 	"larvis/internal/card"
 	"larvis/internal/game"
 	"larvis/internal/hand"
+	"larvis/pkg/json"
 )
 
 func main() {
-	cfg, _ := LoadConfig("./configs/config.json")
+	cfg, _ := json.Load[RootConfig]("./configs/config.json")
 	symbolMap := card.MustCvrtSymbolsToMap(cfg.Domains.Card.Symbols)
 
 	game := game.NewGame()

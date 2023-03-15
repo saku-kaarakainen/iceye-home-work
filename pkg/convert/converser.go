@@ -2,33 +2,47 @@ package convert
 
 import "fmt"
 
-// ConvertWithMapping takes a slice of source type 'Src' and a map
-// of type [Src]Dest as input, and returns a slice of type 'Dest'.
-// Each element in the output slice is mapped from its corresponding
-// element in the input slice using the given mapping.
+// MapKeys transforms a map by applying a function to each key and returning
+// a new map with the transformed keys and the original values.
 //
-// Type Src and Dest must be comparable, which means that
-// the equality operator == must be defined for these types.
+// The function `f` takes a key of type `SrcK` from the source map and returns
+// a key of type `DestK` for the destination map. The function is applied to
+// every key in the source map.
 //
-// Example:
+// The types `SrcK`, `DestK`, and `Val` must be comparable. If the source map
+// has a key type that is not comparable, this function will not compile.
 //
-//	src := []string{"a", "b", "c"}
-//	mapping := map[string]int{"a": 1, "b": 2, "c": 3}
-//	result := ConvertWithMapping(src, mapping)
-//	// result is []int{1, 2, 3}
+// The returned map has the same value type as the input map.
 //
-// Note:
-//   - The function assumes that each element in the input slice exists as a key
-//     in the given mapping. If not, the function panics.
-func ConvertWithMapping[Src comparable, Dest any](
-	src []Src,
-	mapping map[Src]Dest,
-) []Dest {
-	dest := make([]Dest, len(src))
-	for i, r := range src {
-		dest[i] = mapping[r]
+// Example usage:
+//
+//	inputMap := map[string]int{"one": 1, "two": 2, "three": 3}
+//	outputMap := MapKeys(inputMap, func(k string) string {
+//	    return strings.ToUpper(k)
+//	})
+//	// Output: map[ONE:1 TWO:2 THREE:3]
+func MapKeys[
+	SrcK comparable,
+	DestK comparable,
+	Val any,
+](
+	src map[SrcK]Val,
+	f func(SrcK) DestK,
+) map[DestK]Val {
+	newMap := make(map[DestK]Val)
+	for k, v := range src {
+		i := f(k)
+		newMap[i] = v
 	}
-	return dest
+	return newMap
+}
+
+func Map[T, U any](ts []T, f func(T) U) []U {
+    us := make([]U, len(ts))
+    for i := range ts {
+        us[i] = f(ts[i])
+    }
+    return us
 }
 
 // StringToRune takes a string as input and returns its first rune,

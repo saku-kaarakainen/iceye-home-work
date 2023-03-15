@@ -8,10 +8,10 @@
             "handSize": 5,
             "combinations": [
                 { "name": "four of a kind", "value": 5, "method": "FOUROFAKIND" },            
-                { "name": "triple",         "value": 3, "method": "TRIPLE" },
                 { "name": "full house",     "value": 4, "method": "FULLHOUSE" },
-                { "name": "a pair",         "value": 1, "method": "APAIR" },
+                { "name": "triple",         "value": 3, "method": "TRIPLE" }, 
                 { "name": "two pairs",      "value": 2, "method": "TWOPAIRS" },
+                { "name": "a pair",         "value": 1, "method": "APAIR" },
                 { "name": "high card",      "value": 0, "method": "HIGHCARD" }
             ]
         },

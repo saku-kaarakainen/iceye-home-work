@@ -1,5 +1,20 @@
 package collections
 
+func Count[T comparable](array []T) map[T]int {
+	m := make(map[T]int)
+
+	for _, val := range array {
+		// Check if a key is present in the map
+		if c, ok := m[val]; ok {
+			m[val] = c + 1
+		} else {
+			m[val] = 1
+		}
+	}
+
+	return m
+}
+
 // CountSameLetters returns a map where the keys are runes
 // and the values are the number of occurrences of each rune
 // in the input string.
