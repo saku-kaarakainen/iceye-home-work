@@ -39,12 +39,12 @@ func findBiggerByMapping(a, b map[int]int) ScoreResult {
 	}
 
 	aKeys := make([]int, 0)
-	for aKey, _ := range a {
+	for aKey := range a {
 		aKeys = append(aKeys, aKey)
 	}
 
 	bKeys := make([]int, 0)
-	for bKey, _ := range b {
+	for bKey := range b {
 		bKeys = append(bKeys, bKey)
 	}
 

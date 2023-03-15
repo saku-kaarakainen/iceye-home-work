@@ -2,6 +2,7 @@ package collections
 
 import t "larvis/pkg/types"
 
+
 func Set[Key comparable, Value any](
 	dict []t.KeyValuePair[Key, Value],
 	key Key,
