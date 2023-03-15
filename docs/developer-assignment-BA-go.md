@@ -114,14 +114,14 @@ Some examples of hands and what the result should be.
 
 | Hand 1 | Hand 2 | Winner |
 | :-----: |:-------:| :--:|
-| `AAAQQ` | `QQAAA` | Tie | # same cards
+| `AAAQQ` | `QQAAA` | Tie |
 | `53QQ2` | `Q53Q2` | Tie |
 | `53888` | `88385` | Tie |
 | `QQAAA` | `AAAQQ` | Tie |
 | `Q53Q2` | `53QQ2` | Tie |
 | `88385` | `53888` | Tie |
-| `AAAQQ` | `QQQAA` | Hand 1 | # AAA > QQQ
-| `Q53Q4` | `53QQ2` | Hand 1 | QQ, 5, 4
+| `AAAQQ` | `QQQAA` | Hand 1 |
+| `Q53Q4` | `53QQ2` | Hand 1 | 
 | `53888` | `88375` | Hand 1 |
 | `33337` | `QQAAA` | Hand 1 |
 | `22333` | `AAA58` | Hand 1 |
