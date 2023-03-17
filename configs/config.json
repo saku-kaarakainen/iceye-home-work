@@ -1,0 +1,37 @@
+{
+    "domains": {
+        "game": {
+            "playerCount": 2
+        },
+
+        "hand": {
+            "handSize": 5,
+            "combinations": [
+                { "name": "four of a kind", "value": 5, "method": "FOUROFAKIND" },            
+                { "name": "full house",     "value": 4, "method": "FULLHOUSE" },
+                { "name": "triple",         "value": 3, "method": "TRIPLE" }, 
+                { "name": "two pairs",      "value": 2, "method": "TWOPAIRS" },
+                { "name": "a pair",         "value": 1, "method": "APAIR" },
+                { "name": "high card",      "value": 0, "method": "HIGHCARD" }
+            ]
+        },
+
+        "card": {
+            "symbols": [
+                { "code": "2", "value": 2 },
+                { "code": "3", "value": 3 },
+                { "code": "4", "value": 4 },
+                { "code": "5", "value": 5 },
+                { "code": "6", "value": 6 },
+                { "code": "7", "value": 7 },
+                { "code": "8", "value": 8 },
+                { "code": "9", "value": 9 },
+                { "code": "T", "value": 10 },
+                { "code": "J", "value": 11 },
+                { "code": "Q", "value": 12 },
+                { "code": "K", "value": 13 },
+                { "code": "A", "value": 14 }
+            ]
+        }
+    }
+}
